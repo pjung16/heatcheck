@@ -6,14 +6,14 @@ class HomePage extends Component {
 	constructor() {
     super();
     this.state = {
-      customers: []
+      prices: []
     };
   }
 
   componentDidMount() {
-    fetch('http://localhost:8080/api/StockX')
+    fetch('/api/StockX')
       .then(res => res.json())
-      .then(customers => this.setState({customers}, () => console.log('Customers fetched...', customers)));
+      .then(prices => this.setState({prices}, () => console.log('prices fetched...', prices)));
   }
 
   render () {
@@ -22,10 +22,10 @@ class HomePage extends Component {
         <h1>Home Page</h1>
         <Link to='/login'>Login</Link>
         <SearchBar/>
-        <h2>Customers</h2>
+        <h2>Prices</h2>
         <ul>
-        {this.state.customers.map(customer => 
-          <li key={customer.id}>{customer.firstName} {customer.lastName}</li>
+        {this.state.prices.map(customer => 
+          <li key={prices.id}>{prices.price}</li>
         )}
         </ul>
       </div>
