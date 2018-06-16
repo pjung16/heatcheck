@@ -20,6 +20,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
+    "nodemon": "^1.17.5",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-router": "^4.3.1",
@@ -50,5 +51,6 @@
     "plugins": [
       "transform-object-rest-spread"
     ]
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

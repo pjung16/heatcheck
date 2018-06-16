@@ -11,7 +11,7 @@ rp(options)
   .then(($) => {
     $('div[class=title]').each(function(i, elem) {
       if ($(this).text() === '9') {
-        console.log($(this).next().text())
+        return($(this).next().text())
       }
   });
   })
