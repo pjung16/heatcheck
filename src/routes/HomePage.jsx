@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 
 class HomePage extends Component {
-	constructor() {
-    super();
+	constructor(props) {
+    super(props);
+
     this.state = {
       prices: []
     };
   }
 
   componentDidMount() {
-    fetch('/api/StockX')
+    fetch('http://localhost:3000/api/StockX')
       .then(res => res.json())
       .then(prices => this.setState({prices}, () => console.log('prices fetched...', prices)));
   }
 
-  render () {
+  render() {
     return (
       <div>
         <h1>Home Page</h1>
@@ -24,8 +25,8 @@ class HomePage extends Component {
         <SearchBar/>
         <h2>Prices</h2>
         <ul>
-        {this.state.prices.map(customer => 
-          <li key={prices.id}>{prices.price}</li>
+        {this.state.prices.map(customer =>
+          <li key={customer.id}>{customer.price}</li>
         )}
         </ul>
       </div>
