@@ -11,10 +11,10 @@ const options = {
 
 rp(options)
   .then(($) => {
-    $('p[id=plain-medium-10-caps]').each(function(i, elem) {
+    $('.flex').each(function(i, elem) {
       console.log('hello')
   });
   })
   .catch((err) => {
-    console.log(err);
+    console.log("hi");
   });

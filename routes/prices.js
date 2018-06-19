@@ -31,10 +31,10 @@ router.get('/', function(req, res, next) {
   // And insert something like this instead:
   res.json([{
   	id: 1,
-  	price: "samsepi0l"
+  	price: "GoatPrice"
   }, {
   	id: 2,
-  	price: "D0loresH4ze"
+  	price: "FlightClubPrice"
   }, {
   	id: 3,
   	price: StockXPrice

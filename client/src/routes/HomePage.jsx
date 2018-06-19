@@ -20,7 +20,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-        <h1>Home Page</h1>
+        <h1>Heatcheck</h1>
         <Link to='/login'>Login</Link>
         <SearchBar/>
         <h1>Prices</h1>

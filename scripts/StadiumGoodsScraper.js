@@ -15,6 +15,7 @@ const scrape = async() => {
       $('span[class=product-sizes__size]').each(function(i, elem) {
         if ($(this).text() === '9') {
           price = ($(this).next().text());
+          return false;
         }
       });
       return price;
