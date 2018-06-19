@@ -1,56 +1,26 @@
 {
-  "name": "heatcheck",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.jsx",
+  "name": "react-backend",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server",
-    "build": "webpack"
+    "start": "PORT=3001 nodemon bin/www",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run client\" \"npm start\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pjung16/heatcheck.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pjung16/heatcheck/issues"
-  },
-  "homepage": "https://github.com/pjung16/heatcheck#readme",
   "dependencies": {
+    "asyncawait": "^1.0.7",
     "cheerio": "^1.0.0-rc.2",
-    "express": "^4.16.3",
+    "concurrently": "^3.5.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "i": "^0.3.6",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
     "nodemon": "^1.17.5",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
+    "npm": "^6.1.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.11",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^7.0.1",
-    "style-loader": "^0.21.0",
-    "webpack": "^4.9.1",
-    "webpack-cli": "^2.1.4",
-    "webpack-dev-server": "^3.1.4"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
-  "proxy": "http://localhost:8080"
+  }
 }

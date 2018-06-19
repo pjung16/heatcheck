@@ -12,9 +12,9 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/StockX')
+    fetch('/prices')
       .then(res => res.json())
-      .then(prices => this.setState({prices}, () => console.log('prices fetched...', prices)));
+      .then(prices => this.setState({ prices }));
   }
 
   render() {
@@ -23,12 +23,10 @@ class HomePage extends Component {
         <h1>Home Page</h1>
         <Link to='/login'>Login</Link>
         <SearchBar/>
-        <h2>Prices</h2>
-        <ul>
-        {this.state.prices.map(customer =>
-          <li key={customer.id}>{customer.price}</li>
+        <h1>Prices</h1>
+        {this.state.prices.map(price =>
+          <div key={price.id}>{price.price}</div>
         )}
-        </ul>
       </div>
     );
   }
