@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const StockX = require('../scripts/StockXScraper');
 const StadiumGoods = require('../scripts/StadiumGoodsScraper');
+const FlightClub = require('../scripts/FlightClubScraper');
 
 async function getPriceStockX() {
   const response = await StockX.price();
@@ -10,6 +11,11 @@ async function getPriceStockX() {
 
 async function getPriceStadiumGoods() {
   const response = await StadiumGoods.price();
+  return response;
+}
+
+async function getPriceFlightClub() {
+  const response = await FlightClub.price();
   return response;
 }
 
@@ -23,6 +29,11 @@ StadiumGoodsPrice.then((result) => {
   StadiumGoodsPrice = result;
 })
 
+let FlightClubPrice = getPriceFlightClub();
+FlightClubPrice.then((result) => {
+  FlightClubPrice = result;
+})
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	// Comment out this line:
@@ -34,7 +45,7 @@ router.get('/', function(req, res, next) {
   	price: "GoatPrice"
   }, {
   	id: 2,
-  	price: "FlightClubPrice"
+  	price: FlightClubPrice
   }, {
   	id: 3,
   	price: StockXPrice
