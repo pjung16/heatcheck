@@ -32,6 +32,7 @@ const scrape = async() => {
       if (price[i] === '$') dollarIndices.push(i);
     }
     price = price.substring(dollarIndices[0], dollarIndices [1]);
+    console.log("Flight Club price fetched!")
     return price;
   } catch(error) {
       console.error(error);

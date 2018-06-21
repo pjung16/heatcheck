@@ -34,6 +34,9 @@ FlightClubPrice.then((result) => {
   FlightClubPrice = result;
 })
 
+// solesupremacy and rifla?
+// goat is blocked
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	// Comment out this line:
