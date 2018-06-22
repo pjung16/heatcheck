@@ -4,6 +4,18 @@ const StockX = require('../scripts/StockXScraper');
 const StadiumGoods = require('../scripts/StadiumGoodsScraper');
 const FlightClub = require('../scripts/FlightClubScraper');
 
+router.use(express.json());
+
+let shoe = 'ugh';
+let size = 'yuh';
+
+router.get('/api/shoes', function(req, res) {
+  shoe = req.body.shoe;
+  size = req.body.size;
+  console.log(shoe)
+  console.log(size)
+});
+
 async function getPriceStockX() {
   const response = await StockX.price();
   return response;

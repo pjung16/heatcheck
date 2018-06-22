@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -20,12 +21,11 @@ class SearchBar extends Component {
 
   handleSizeChange(event) {
     this.setState({size: event.target.value});
-    console.log(this.state);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('http://localhost:3001/api/shoes', {
+    fetch('/api/shoes', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -35,14 +35,6 @@ class SearchBar extends Component {
         shoe: this.state.shoe,
         size: this.state.size
       })
-    }).then(function(response) {
-      return response.json();
-    }).then(function(data) {
-      //Success code goes here
-      alert('form submited')
-    }).catch(function(err) {
-      //Failure
-      alert(console.log(err))
     });
   }
 
@@ -67,10 +59,12 @@ class SearchBar extends Component {
               )}
             </select>
           </label>
-          <input 
-            type="submit" 
-            value="Search" 
-          />
+          <Link to={`/shoe/${this.state.shoe}`}>
+            <input 
+              type="submit" 
+              value="Search" 
+            />
+          </Link>
         </form>
       </div>
     );

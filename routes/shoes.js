@@ -1,15 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var app = express();
 
-app.use(express.json());
+router.use(express.json());
+
+let data = {}
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.send(data);
 });
 
-app.post('/api/shoes', (req, res) => {
+router.post('/', (req, res) => {
   console.log(req.body);      // your JSON
+  data = req.body;
   res.send(req.body);    // echo the result back
 })
 
