@@ -5,24 +5,45 @@ class ShoePage extends Component {
     super(props);
 
     this.state = {
-      prices: []
+      prices: [],
+      loading: true
     };
   }
 
   componentDidMount() {
-    fetch('/prices')
+  	console.log("shoepage mounted!")
+  	fetch('/prices')
       .then(res => res.json())
-      .then(prices => this.setState({ prices }));
+      .then(prices => {
+        this.setState({
+          prices: prices,
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
+  	let content;
+
+    if (this.state.loading) {
+      content = <div>Loading...</div>;
+    } else { 
+      content = 
+        <div>
+	        <h1>Shoe</h1>
+	        <h1>Prices</h1>
+	        {this.state.prices.map(price =>
+	          <div key={price.id}>{price.price}</div>
+	        )}
+      	</div>
+    }
+
     return (
       <div>
-        <h1>Shoe</h1>
-        <h1>Prices</h1>
-        {this.state.prices.map(price =>
-          <div key={price.id}>{price.price}</div>
-        )}
+        {content}
       </div>
     );
   }

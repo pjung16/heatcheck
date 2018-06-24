@@ -41,31 +41,29 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Shoe:
-            <input
-              type={'text'}
-              value={this.state.shoe}
-              onChange={this.handleShoeChange}
-              placeholder={'Search for your ideal shoe...'}
-            />
-          </label>
-          <label>
-            Size:
-            <select value={this.state.size} onChange={this.handleSizeChange}>
-              {this.state.sizes.map(size =>
-                <option key={size} value={size}>{size}</option>
-              )}
-            </select>
-          </label>
-          <Link to={`/shoe/${this.state.shoe}`}>
-            <input 
-              type="submit" 
-              value="Search" 
-            />
-          </Link>
-        </form>
+        <label>
+          Shoe:
+          <input
+            type={'text'}
+            value={this.state.shoe}
+            onChange={this.handleShoeChange}
+            placeholder={'Search for your ideal shoe...'}
+          />
+        </label>
+        <label>
+          Size:
+          <select value={this.state.size} onChange={this.handleSizeChange}>
+            {this.state.sizes.map(size =>
+              <option key={size} value={size}>{size}</option>
+            )}
+          </select>
+        </label>
+        <Link to={`/shoe/${this.state.shoe}`} onClick={this.handleSubmit}>
+          <input 
+            type="submit" 
+            value="Search" 
+          />
+        </Link>
       </div>
     );
   }

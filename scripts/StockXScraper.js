@@ -9,6 +9,7 @@ const scrape = async() => {
     await nightmare
       .goto('https://www.stockx.com/')
       .type('#home-search', 'air jordan 4 cactus jack \u000d')
+      .wait(1500)
       .click('.tile-link')
       .wait(2000)
       .evaluate(function(){
