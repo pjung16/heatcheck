@@ -1,19 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const shoes = require('./shoes');
 const StockX = require('../scripts/StockXScraper');
 const StadiumGoods = require('../scripts/StadiumGoodsScraper');
 const FlightClub = require('../scripts/FlightClubScraper');
 
 router.use(express.json());
-
-let shoeData = {};
-
-router.get('/api/shoes', function(req, res) {
-  shoe = req.body.shoe;
-  size = req.body.size;
-  console.log(shoe)
-  console.log(size)
-});
 
 async function getPriceStockX(shoe, size) {
   const response = await StockX.price();
@@ -30,28 +22,21 @@ async function getPriceFlightClub(shoe, size) {
   return response;
 }
 
-let StockXPrice = getPriceStockX(shoeData.shoe, shoeData.size);
-StockXPrice.then((result) => {
-  StockXPrice = result;
-})
-
-let StadiumGoodsPrice = getPriceStadiumGoods(shoeData.shoe, shoeData.size);
-StadiumGoodsPrice.then((result) => {
-  StadiumGoodsPrice = result;
-})
-
-let FlightClubPrice = getPriceFlightClub(shoeData.shoe, shoeData.size);
-FlightClubPrice.then((result) => {
-  FlightClubPrice = result;
-})
-
-
-
 // solesupremacy and rifla?
 // goat is blocked
 
 /* GET prices listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async(req, res, next) => {
+  const data = shoes.getShoes();
+  console.log(data.shoe)
+  console.log(data.size)
+
+  const StockXPrice = await getPriceStockX(data.shoe, data.size);
+
+  const StadiumGoodsPrice = await getPriceStadiumGoods(data.shoe, data.size);
+
+  const FlightClubPrice = await getPriceFlightClub(data.shoe, data.size);
+  
   res.json([{
   	id: 1,
   	price: "GoatPrice"

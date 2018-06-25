@@ -15,4 +15,9 @@ router.post('/', (req, res) => {
   res.send(req.body);    // echo the result back
 })
 
+function getShoes() {
+	return data;
+}
+
 module.exports = router;
+module.exports.getShoes = getShoes;

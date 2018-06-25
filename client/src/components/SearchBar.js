@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom'
 
 class SearchBar extends Component {
   constructor(props) {
@@ -36,37 +36,38 @@ class SearchBar extends Component {
         size: this.state.size
       })
     });
+    this.props.history.push(`/shoe/${this.state.shoe}`)
   }
 
   render() {
     return (
       <div>
-        <label>
-          Shoe:
-          <input
-            type={'text'}
-            value={this.state.shoe}
-            onChange={this.handleShoeChange}
-            placeholder={'Search for your ideal shoe...'}
-          />
-        </label>
-        <label>
-          Size:
-          <select value={this.state.size} onChange={this.handleSizeChange}>
-            {this.state.sizes.map(size =>
-              <option key={size} value={size}>{size}</option>
-            )}
-          </select>
-        </label>
-        <Link to={`/shoe/${this.state.shoe}`} onClick={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Shoe:
+            <input
+              type={'text'}
+              value={this.state.shoe}
+              onChange={this.handleShoeChange}
+              placeholder={'Search for your ideal shoe...'}
+            />
+          </label>
+          <label>
+            Size:
+            <select value={this.state.size} onChange={this.handleSizeChange}>
+              {this.state.sizes.map(size =>
+                <option key={size} value={size}>{size}</option>
+              )}
+            </select>
+          </label>
           <input 
             type="submit" 
             value="Search" 
           />
-        </Link>
+        </form>
       </div>
     );
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);
