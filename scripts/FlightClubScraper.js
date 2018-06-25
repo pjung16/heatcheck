@@ -1,22 +1,22 @@
 const Nightmare = require('nightmare')
-const nightmare = Nightmare({ show: false })
+const nightmare = Nightmare({ show: true })
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-const scrape = async() => {
+const scrape = async(shoe, size) => {
   try {
     let price = "hi";
     await nightmare
       .goto('https://www.flightclub.com/')
-      .type('#search', 'air jordan 4 cactus jack \u000d')
+      .type('#search', `${shoe} \u000d`)
       .click('.result-thumbnail')
       .evaluate(() => {
         var correctSize = document.getElementsByTagName('button');
         for (var i = 0; i < correctSize.length; i++) {
-          if (correctSize[i].innerText.trim() === '9') correctSize[i].id = 'loginbutton';
+          if (correctSize[i].innerText.trim() === size) correctSize[i].id = 'thisone';
         }
       })
-      .click('button[id=loginbutton]')
+      .click('button[id=thisone]')
       .evaluate(function(){
         return document.body.innerHTML;
       })

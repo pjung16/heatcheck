@@ -3,21 +3,21 @@ const nightmare = Nightmare({ show: false })
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-const scrape = async() => {
+const scrape = async(shoe, size) => {
   try {
     let price = "hi";
     await nightmare
       .goto('https://www.stadiumgoods.com/')
       .click('.klaviyo_close_modal')
       .click('.header-tools__item--search')
-      .type('#search', 'air jordan 4 cactus jack \u000d')
+      .type('#search', `${shoe} \u000d`)
       .evaluate(function(){
         return document.body.innerHTML;
       })
       .then(function(body){
         const $ = cheerio.load(body);
         $('.product-sizes__size').each(function(i, elem) {
-          if ($(this).text() === '9') {
+          if ($(this).text() === size) {
             price = ($(this).next().text());
           }
         });

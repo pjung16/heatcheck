@@ -3,12 +3,12 @@ const nightmare = Nightmare({ show: false })
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-const scrape = async() => {
+const scrape = async(shoe, size) => {
   try {
     let price = "hi";
     await nightmare
       .goto('https://www.stockx.com/')
-      .type('#home-search', 'air jordan 4 cactus jack \u000d')
+      .type('#home-search', `${shoe} \u000d`)
       .wait(1500)
       .click('.tile-link')
       .wait(2000)
@@ -18,7 +18,7 @@ const scrape = async() => {
       .then(function(body){
         const $ = cheerio.load(body);
         $('div[class=title]').each(function(i, elem) {
-          if ($(this).text() === '9') {
+          if ($(this).text() === size) {
             price = ($(this).next().text());
           }
         });

@@ -8,17 +8,17 @@ const FlightClub = require('../scripts/FlightClubScraper');
 router.use(express.json());
 
 async function getPriceStockX(shoe, size) {
-  const response = await StockX.price();
+  const response = await StockX.price(shoe, size);
   return response;
 }
 
 async function getPriceStadiumGoods(shoe, size) {
-  const response = await StadiumGoods.price();
+  const response = await StadiumGoods.price(shoe, size);
   return response;
 }
 
 async function getPriceFlightClub(shoe, size) {
-  const response = await FlightClub.price();
+  const response = await FlightClub.price(shoe, size);
   return response;
 }
 
@@ -36,7 +36,7 @@ router.get('/', async(req, res, next) => {
   const StadiumGoodsPrice = await getPriceStadiumGoods(data.shoe, data.size);
 
   const FlightClubPrice = await getPriceFlightClub(data.shoe, data.size);
-  
+
   res.json([{
   	id: 1,
   	price: "GoatPrice"
