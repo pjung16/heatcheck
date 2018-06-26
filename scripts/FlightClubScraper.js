@@ -1,5 +1,5 @@
 const Nightmare = require('nightmare')
-const nightmare = Nightmare({ show: true })
+const nightmare = Nightmare({ show: false })
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
@@ -9,21 +9,22 @@ const scrape = async(shoe, size) => {
     await nightmare
       .goto('https://www.flightclub.com/')
       .type('#search', `${shoe} \u000d`)
+      .wait(1000)
       .click('.result-thumbnail')
-      .evaluate(() => {
+      .evaluate((size) => {
         var correctSize = document.getElementsByTagName('button');
         for (var i = 0; i < correctSize.length; i++) {
-          if (correctSize[i].innerText.trim() === size) correctSize[i].id = 'thisone';
+          if (correctSize[i].textContent.indexOf(size) > -1) correctSize[i].id = 'thisone';
         }
-      })
+      }, (size))
       .click('button[id=thisone]')
       .evaluate(function(){
         return document.body.innerHTML;
       })
       .then(function(body){
         const $ = cheerio.load(body);
-        $('#product-options-wrapper').each(function(i, elem) {
-          price = ($('.price-box').find('.price').text());
+        $('.price-box').each(function(i, elem) {
+          price = $('.price-box').find('.price').text();
         });
         return nightmare.end();
       })

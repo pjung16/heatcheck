@@ -28,8 +28,8 @@ async function getPriceFlightClub(shoe, size) {
 /* GET prices listing. */
 router.get('/', async(req, res, next) => {
   const data = shoes.getShoes();
-  console.log(data.shoe)
-  console.log(data.size)
+  console.log(data.shoe);
+  console.log(data.size);
 
   const StockXPrice = await getPriceStockX(data.shoe, data.size);
 
@@ -39,15 +39,19 @@ router.get('/', async(req, res, next) => {
 
   res.json([{
   	id: 1,
+    store: "Goat",
   	price: "GoatPrice"
   }, {
   	id: 2,
+    store: "Flight Club",
   	price: FlightClubPrice
   }, {
   	id: 3,
+    store: "StockX",
   	price: StockXPrice
   }, {
     id: 4,
+    store: "Stadium Goods",
     price: StadiumGoodsPrice
   }]);
 });

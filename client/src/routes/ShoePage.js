@@ -36,7 +36,7 @@ class ShoePage extends Component {
 	        <h1>Shoe</h1>
 	        <h1>Prices</h1>
 	        {this.state.prices.map(price =>
-	          <div key={price.id}>{price.price}</div>
+	          <div key={price.id}>{price.store}: {price.price}</div>
 	        )}
       	</div>
     }

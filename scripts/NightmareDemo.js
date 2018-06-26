@@ -1,29 +1,23 @@
 const Nightmare = require('nightmare')
-const nightmare = Nightmare({ show: true })
+const nightmare = Nightmare({ show: false })
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-let price = '';
+var size = "9";
+
 nightmare
-  .goto('https://www.stockx.com/')
-  .type('#home-search', 'air jordan 4 cactus jack \u000d')
-  .click('.tile-link')
-  .wait(2000)
-  .evaluate(function(){
-    return document.body.innerHTML;
+  .goto('https://www.flightclub.com/')
+  .type('#search', 'air jordan 4 cactus jack \u000d')
+  .wait(1000)
+  .click('.result-thumbnail')
+  .evaluate((size) => {
+    var correctSize = document.getElementsByTagName('button');
+    for (var i = 0; i < correctSize.length; i++) {
+      if (correctSize[i].textContent.indexOf(size) > -1) correctSize[i].id = 'thisone';
+    }
+  }, (size))
+  .click('button[id=thisone]')
+  .end()
+  .catch(error => {
+    console.error('Search failed:', error)
   })
-  .then(function(body){
-    const $ = cheerio.load(body);
-    $('div[class=title]').each(function(i, elem) {
-      if ($(this).text() === '9') {
-        price = ($(this).next().text());
-        console.log(price)
-      }
-    });
-    return nightmare.end();
-  })
-// let decimalIndex = -1;
-// for (var i = 0; i < price.length; i++) {
-//   if (price[i] === '.') decimalIndex = i;
-// }
-// price = price.substring(0, decimalIndex);
