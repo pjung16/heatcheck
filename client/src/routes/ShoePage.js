@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./ShoePage.css";
 
 class ShoePage extends Component {
 	constructor(props) {
@@ -29,7 +30,14 @@ class ShoePage extends Component {
   	let content;
 
     if (this.state.loading) {
-      content = <div>Loading...</div>;
+      content = 
+      <div className="screen">
+			  <div className="loader">
+			    <div className="dot"></div>
+			    <div className="dot"></div>
+			    <div className="dot"></div>
+			  </div>
+			</div>
     } else { 
       content = 
         <div>
