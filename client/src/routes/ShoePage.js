@@ -31,12 +31,14 @@ class ShoePage extends Component {
 
     if (this.state.loading) {
       content = 
-      <div className="screen">
-			  <div className="loader">
-			    <div className="dot"></div>
-			    <div className="dot"></div>
-			    <div className="dot"></div>
-			  </div>
+      <div className="fire">
+			  <div className="flames">
+			    <div className="flame"></div>
+			    <div className="flame"></div>
+			    <div className="flame"></div>
+		      <div className="flame"></div>
+			   </div>
+			   <div className="logs"></div>
 			</div>
     } else { 
       content = 
